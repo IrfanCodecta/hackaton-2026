@@ -1,0 +1,51 @@
+{
+  "id": "hackaton-2026",
+  "name": "Hackaton 2026",
+  "version": "0.1.0",
+  "description": "Join the hackaton, find your challenge, and share findings with verified Möbius participants.",
+  "entry": "index.jsx",
+  "icon": "icon.png",
+  "offline_capable": false,
+  "permissions": {
+    "identity_manage": true
+  },
+  "service": {
+    "id": "hackaton-2026",
+    "entry": "service.py",
+    "access": "public"
+  },
+  "source_files": [
+    "domain.py",
+    "service.py",
+    "peer_transport.py",
+    "net_utils.py",
+    "dns_resolver.py",
+    "theme.js",
+    "Challenge.jsx",
+    "test_hackaton.py",
+    "ChallengeArt.jsx",
+    "Rewards.jsx"
+  ],
+  "package_id": "42d8bc63-9465-46f1-8972-b8e58acf4ada",
+  "store": {
+    "tagline": "Build together. Share discoveries. Celebrate ideas.",
+    "description": "Hackaton 2026 brings a science-festival feel to a collaborative hackathon. Join the event, explore challenge briefs, and share findings, links, images and replies with verified Möbius participants. The Rewards page has mystery top-three podiums for Best Apps, Best Games, Bug Fixes and Best Memes.\n\nEarly event release: challenge briefs and rules are placeholders and will be updated later. Rewards remain To Be Announced; this release does not score entries or reveal winners.\n\nRequires an online Möbius installation and a connected Möbius identity. To participate in the same event, install the app in your own Möbius and set Event host to the organizer’s public hostname. Findings and participant lists are available to members of each challenge.",
+    "screenshots": [
+      {
+        "src": "static/store/challenges.png",
+        "alt": "Science-festival challenge board with three colorful sample briefs.",
+        "label": "Explore the challenges"
+      },
+      {
+        "src": "static/store/rewards.png",
+        "alt": "Four reward categories with gray mystery pals and unrevealed top-three podiums.",
+        "label": "The reveal is still to come"
+      },
+      {
+        "src": "static/store/phone.png",
+        "alt": "Phone layout of Rewards with the Best Apps mystery podium.",
+        "label": "Made for phones too"
+      }
+    ]
+  }
+}
