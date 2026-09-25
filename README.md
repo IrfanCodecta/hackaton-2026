@@ -14,9 +14,11 @@ Bug Fixes and Best Memes. It does not score entries or reveal winners.
 ## Participate
 
 1. Install in your own Möbius and connect a Möbius identity with an @handle.
-2. Open **Event host** and enter the organizer's public hostname to join the
-   same event. A fresh installation defaults to its own host; installation
-   alone does not connect it to somebody else's event.
+2. New installations connect to the shared event at
+   `mobius-production-56cd.up.railway.app` automatically. An explicitly saved
+   alternate host stays selected and is visibly marked as a separate event;
+   choose **Use shared event** to switch. Old comments and memberships stay
+   on the original installation and are not moved or deleted.
 3. Join the event, read the rules, then open and join a challenge.
 4. Share findings, links, PNG/JPEG/WebP images (up to 1 MB), and threaded replies.
    You can edit or delete your own findings and replies. Other people's replies
@@ -58,9 +60,15 @@ finding is present in the refreshed feed; failed submissions retain the draft.
 From the package directory in a Möbius Python environment:
 
 ```sh
-python -m unittest test_hackaton.py
+python -m unittest test_hackaton.py test_shared_event.py
+node --test test_refresh.mjs
 ```
 
 Tests use temporary databases and fake identities, not a live event. They cover
 onboarding, membership gates, attachments, replay safety, author-only edits and
 deletes, reply preservation, pagination and federation proof rejection.
+
+Views refresh every 15 seconds while visible and online, and on focus or
+reconnection. Expanded replies refresh too; drafts and loaded older pages
+remain open. A failed refresh keeps the last view and displays a stale-data
+warning. This is periodic refresh, not instantaneous live delivery.

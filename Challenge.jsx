@@ -1,4 +1,5 @@
 import React,{useState,useEffect,useRef,useCallback} from 'react';
+import {watchVisible,readThread} from './refresh.js';
 import ChallengeArt from './ChallengeArt.jsx';
 import {DotsVertical,ArrowLeft,Reload} from '@openai/apps-sdk-ui/components/Icon';
 function Links({text}){return text.split(/(https?:\/\/[^\s<>]+)/g).map((s,i)=>/^https?:\/\//.test(s)?<a key={i} href={s} target="_blank" rel="noopener noreferrer">{s}</a>:s)}
@@ -27,8 +28,11 @@ function CommentComposer({card,command,parentId=null,onPosted,onCancel}){
 function Comment({post:p,card,command,onChange,depth=0,fresh=false}){
  const noun=p.parent_id?'reply':'finding';
  const [replying,setReplying]=useState(false),[replies,setReplies]=useState(null),[expanded,setExpanded]=useState(false),[loadingReplies,setLoadingReplies]=useState(false);
- async function loadReplies(older=false){setLoadingReplies(true);try{const d=await command('replies',{card,parent_id:p.id,...(older&&replies?.posts.length?{before:replies.posts[replies.posts.length-1].id}:{})});setReplies(old=>older?{...d,posts:[...old.posts,...d.posts]}:d);setExpanded(true)}catch(e){setError(e.message)}finally{setLoadingReplies(false)}}
+ const [syncError,setSyncError]=useState('');
+ const replyThrough=useRef(null),replyRequest=useRef(0);
+ async function loadReplies(older=false){replyRequest.current++;setLoadingReplies(true);try{const d=await command('replies',{card,parent_id:p.id,...(older&&replies?.posts.length?{before:replies.posts[replies.posts.length-1].id}:{})});replyRequest.current++;if(older&&d.posts.length)replyThrough.current=d.posts.at(-1).id;setReplies(old=>older?{...d,posts:[...old.posts,...d.posts]}:d);setExpanded(true)}catch(e){setError(e.message)}finally{setLoadingReplies(false)}}
 
+ useEffect(()=>{if(!expanded)return;return watchVisible(async signal=>{const request=++replyRequest.current;const d=await readThread(command,'replies',{card,parent_id:p.id},replyThrough.current,signal);if(!signal.aborted&&request===replyRequest.current){setReplies(d);setSyncError('')}},e=>setSyncError('Replies may be out of date. '+e.message))},[expanded,command,card,p.id]);
  const [editing,setEditing]=useState(false),[deleting,setDeleting]=useState(false),[draft,setDraft]=useState(p.text),[removeImage,setRemoveImage]=useState(false),[busy,setBusy]=useState(false),[error,setError]=useState('');
  const request=useRef(null),lock=useRef(false);
  async function mutate(action){if(lock.current)return;lock.current=true;setBusy(true);setError('');try{const body={card,id:p.id,...(action==='edit_comment'?{text:draft,original_text:p.text,remove_image:removeImage}:{})};if(!request.current)request.current={id:crypto.randomUUID(),action,body};const result=await command(request.current.action,request.current.body,request.current.id);request.current=null;setEditing(false);setDeleting(false);onChange(p.id,action==='delete_comment'?result.post:{...p,text:draft.trim(),has_image:removeImage?0:p.has_image});window.mobius.signal(action==='delete_comment'?'item_deleted':'item_updated',{type:'comment'})}catch(e){setError(e.message)}finally{lock.current=false;setBusy(false)}}
@@ -39,24 +43,26 @@ function Comment({post:p,card,command,onChange,depth=0,fresh=false}){
  {!!p.has_image&&(!editing||!removeImage)&&<PostImage command={command} card={card} id={p.id}/>}
 
  {deleting&&<div className="hk-delete-confirm"><p>Delete this {noun}{p.has_image?' and its image':''}? This cannot be undone. Replies from others will be kept.</p><div className="hk-row"><button className="hk-danger" disabled={busy} onClick={()=>mutate('delete_comment')}>{busy?'Deleting…':`Delete ${noun}`}</button><button autoFocus disabled={busy} onClick={cancel}>Keep {noun}</button></div></div>}
- {error&&<p className="hk-compose-error" role="alert">{error}</p>}
+ {error&&<p className="hk-compose-error" role="alert">{error}</p>}{syncError&&<p className="hk-compose-error" role="status">{syncError}</p>}
  {!editing&&!deleting&&<div className="hk-reply-actions">{!p.deleted&&<button onClick={()=>setReplying(v=>!v)} aria-expanded={replying}>Reply</button>}{p.reply_count>0&&<button disabled={loadingReplies} onClick={()=>expanded?setExpanded(false):loadReplies()} aria-expanded={expanded}>{loadingReplies?'Loading…':expanded?'Hide replies':`View replies (${p.reply_count})`}</button>}</div>}
  {replying&&<div className="hk-reply-composer"><p className="hk-muted">Replying to {p.actor}</p><CommentComposer card={card} command={command} parentId={p.id} onCancel={()=>setReplying(false)} onPosted={async()=>{onChange(p.id,{...p,reply_count:(p.reply_count||0)+1});await loadReplies();setReplying(false)}}/></div>}
- {expanded&&replies&&<div className={'hk-replies'+(depth>1?' hk-replies-deep':'')} aria-label="Replies">{replies.posts.map(r=><Comment key={r.id} post={r} card={card} command={command} depth={depth+1} onChange={(id,next)=>{setReplies(d=>({...d,posts:next?d.posts.map(item=>item.id===id?next:item):d.posts.filter(item=>item.id!==id)}));if(!next)onChange(p.id,{...p,reply_count:Math.max(0,p.reply_count-1)})}}/>)}{replies.more&&<button disabled={loadingReplies} onClick={()=>loadReplies(true)}>Older replies</button>}</div>}
+ {expanded&&replies&&<div className={'hk-replies'+(depth>1?' hk-replies-deep':'')} aria-label="Replies">{replies.posts.map(r=><Comment key={r.id} post={r} card={card} command={command} depth={depth+1} onChange={(id,next)=>{replyRequest.current++;setReplies(d=>({...d,posts:next?d.posts.map(item=>item.id===id?next:item):d.posts.filter(item=>item.id!==id)}));if(!next)onChange(p.id,{...p,reply_count:Math.max(0,p.reply_count-1)})}}/>)}{replies.more&&<button disabled={loadingReplies} onClick={()=>loadReplies(true)}>Older replies</button>}</div>}
  </article>
 }
 export default function Challenge({card,command,refresh,onBack}){
  const [detail,setDetail]=useState(null),[error,setError]=useState(''),[busy,setBusy]=useState(false);
  const lock=useRef(false);
+ const [syncError,setSyncError]=useState('');
  const [loading,setLoading]=useState(0),[refreshNotice,setRefreshNotice]=useState('');
  const [freshId,setFreshId]=useState(null),[joinedNow,setJoinedNow]=useState(false),[briefOpen,setBriefOpen]=useState(!card.joined);
- const load=useCallback(async()=>{setLoading(n=>n+1);try{const d=await command('detail',{card:card.id});setDetail(d)}finally{setLoading(n=>n-1)}},[command,card.id]);
- useEffect(()=>{if(card.joined)load().catch(e=>setError(e.message))},[card.joined,load]);
+ const through=useRef(null),loadRequest=useRef(0);
+ const load=useCallback(async(signal)=>{const request=++loadRequest.current;setLoading(n=>n+1);try{const d=await readThread(command,'detail',{card:card.id},through.current,signal);if(!signal?.aborted&&request===loadRequest.current){setDetail(d);setSyncError('')}}finally{setLoading(n=>n-1)}},[command,card.id]);
+ useEffect(()=>{if(card.joined)return watchVisible(load,e=>setSyncError('Findings and participant counts may be out of date. '+e.message))},[card.joined,load]);
  async function enter(){if(lock.current)return;lock.current=true;setBusy(true);setError('');try{if(!card.joined){await command('join_card',{card:card.id});setJoinedNow(true);setBriefOpen(false);await refresh()}}catch(e){setError(e.message)}finally{lock.current=false;setBusy(false)}}
  return <section className="hk-discussion" aria-label={`${card.title} discussion`}>
  <button className="hk-back" onClick={onBack}><ArrowLeft width={20} height={20} aria-hidden="true"/>Back to challenges</button>
  <div className="hk-community-title" data-challenge={card.id}><div className="hk-community-copy"><div className="hk-challenge-label"><span className="hk-community-icon" aria-hidden="true">{card.id}</span><span className="hk-eyebrow">{card.tag}</span>{card.joined&&<span className="hk-joined-label">Joined</span>}</div><h1>{card.title}</h1><div className={"hk-about-stat"+(joinedNow?" hk-joined-now":"")}><span className="hk-members-sky" aria-hidden="true"><i/><i/><i/></span><span>{detail?.members.length??card.count} participants</span></div></div><ChallengeArt id={card.id}/></div>
- {error&&<div className="hk-error" role="alert">{error}</div>}
+ {error&&<div className="hk-error" role="alert">{error}</div>}{syncError&&<div className="hk-error" role="status">{syncError}</div>}
  <details className="hk-brief" open={briefOpen} onToggle={e=>setBriefOpen(e.currentTarget.open)}><summary>Read brief<span className="hk-muted">Sample challenge</span></summary><p>{card.description}</p></details>
  {card.joined&&detail&&<details className="hk-participants"><summary>Participants<span className="hk-muted">{detail.members.length}</span></summary><div className="hk-members">{detail.members.map(m=><span className="hk-member" key={m}>{m}</span>)}</div><p className="hk-muted">Findings are visible to challenge members.</p></details>}
  <div className="hk-discussion-layout"><div className="hk-feed">
@@ -64,7 +70,7 @@ export default function Challenge({card,command,refresh,onBack}){
  {!card.joined?<div className="hk-panel hk-empty"><h3>Join to see findings.</h3><p className="hk-muted">Become a member to see everyone taking part and their posts, images, and findings.</p><button className="primary" disabled={busy} onClick={enter}>Join challenge</button></div>:detail?<>
  <CommentComposer card={card.id} command={command} onPosted={async saved=>{await load();setFreshId(saved.id)}}/>
 
- {detail.posts.length===0?<div className="hk-panel hk-empty"><h3>Start the conversation.</h3><p className="hk-muted">Share your first result, ask a question, or show what you are working on.</p></div>:detail.posts.map(p=><Comment key={p.id} fresh={p.id===freshId} post={p} card={card.id} command={command} onChange={(id,next)=>setDetail(d=>({...d,posts:next?d.posts.map(item=>item.id===id?next:item):d.posts.filter(item=>item.id!==id)}))}/>)}{detail.more&&<button onClick={async()=>{try{const next=await command('detail',{card:card.id,before:detail.posts[detail.posts.length-1].id});setDetail({...next,posts:[...detail.posts,...next.posts]})}catch(e){setError(e.message)}}}>Older findings</button>}
+ {detail.posts.length===0?<div className="hk-panel hk-empty"><h3>Start the conversation.</h3><p className="hk-muted">Share your first result, ask a question, or show what you are working on.</p></div>:detail.posts.map(p=><Comment key={p.id} fresh={p.id===freshId} post={p} card={card.id} command={command} onChange={(id,next)=>{loadRequest.current++;setDetail(d=>({...d,posts:next?d.posts.map(item=>item.id===id?next:item):d.posts.filter(item=>item.id!==id)}))}}/>)}{detail.more&&<button onClick={async()=>{try{loadRequest.current++;const next=await command('detail',{card:card.id,before:detail.posts[detail.posts.length-1].id});loadRequest.current++;if(next.posts.length)through.current=next.posts.at(-1).id;setDetail(d=>({...next,posts:[...d.posts,...next.posts.filter(p=>!d.posts.some(old=>old.id===p.id))]}))}catch(e){setError(e.message)}}}>Older findings</button>}
  </>:<div className="hk-panel"><p>Loading discussion…</p></div>}
  </div></div></section>
 }

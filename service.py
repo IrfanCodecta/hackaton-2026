@@ -24,6 +24,7 @@ DB_PATH=ROOT/'hackaton.sqlite3'
 SERVICE='/api/app-services/hackaton-2026'
 ORIGIN=os.environ['INSTANCE_ORIGIN'].rstrip('/')
 HOST=urlsplit(ORIGIN).netloc.lower()
+EVENT_HOST='mobius-production-56cd.up.railway.app'
 
 def digest(value):return hashlib.sha256(json.dumps(value,sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest()
 def host(value):
@@ -101,10 +102,10 @@ async def main(req):
     p=await profile()
     path=req.get('path');b=req.get('body') or {}
     if path=='context' and req['method']=='GET':
-        return {'identity':p,'host':HOST}
+        return {'identity':p,'host':HOST,'event_host':EVENT_HOST}
     require(path=='command' and req['method']=='POST','Not found.',404)
     require(isinstance(b,dict),'Invalid command.')
-    target=b.get('host') or HOST; action=b.get('action'); body=b.get('body') or {}; rid=b.get('request_id')
+    target=b.get('host') or EVENT_HOST; action=b.get('action'); body=b.get('body') or {}; rid=b.get('request_id')
     if target==HOST:
         return execute(action,body,p['handle'],True,rid)
     target=host(target)

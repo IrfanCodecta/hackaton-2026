@@ -24,12 +24,15 @@
     "Challenge.jsx",
     "test_hackaton.py",
     "ChallengeArt.jsx",
-    "Rewards.jsx"
+    "Rewards.jsx",
+    "refresh.js",
+    "test_shared_event.py",
+    "test_refresh.mjs"
   ],
   "package_id": "42d8bc63-9465-46f1-8972-b8e58acf4ada",
   "store": {
     "tagline": "Build together. Share discoveries. Celebrate ideas.",
-    "description": "Hackaton 2026 brings a science-festival feel to a collaborative hackathon. Join the event, explore challenge briefs, and share findings, links, images and replies with verified Möbius participants. The Rewards page has mystery top-three podiums for Best Apps, Best Games, Bug Fixes and Best Memes.\n\nEarly event release: challenge briefs and rules are placeholders and will be updated later. Rewards remain To Be Announced; this release does not score entries or reveal winners.\n\nRequires an online Möbius installation and a connected Möbius identity. To participate in the same event, install the app in your own Möbius and set Event host to the organizer’s public hostname. Findings and participant lists are available to members of each challenge.",
+    "description": "Hackaton 2026 brings a science-festival feel to a collaborative hackathon. Join the event, explore challenge briefs, and share findings, links, images and replies with verified Möbius participants. The Rewards page has mystery top-three podiums for Best Apps, Best Games, Bug Fixes and Best Memes.\n\nEarly event release: challenge briefs and rules are placeholders and will be updated later. Rewards remain To Be Announced; this release does not score entries or reveal winners.\n\nRequires an online Möbius installation and a connected Möbius identity. Install the app in your own Möbius to connect to the shared Hackaton event automatically. Previously saved alternate hosts are preserved and clearly marked; choose Use shared event to switch. Comments and counts refresh automatically while the view is open. Findings and participant lists are available to members of each challenge.",
     "screenshots": [
       {
         "src": "static/store/challenges.png",
