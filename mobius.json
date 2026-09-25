@@ -2,7 +2,7 @@
   "id": "hackaton-2026",
   "name": "Hackaton 2026",
   "version": "0.1.0",
-  "description": "Join the hackaton, find your challenge, and share findings with verified Möbius participants.",
+  "description": "Join the hackaton, find your challenge, and share findings with verified M\u00f6bius participants.",
   "entry": "index.jsx",
   "icon": "icon.png",
   "offline_capable": false,
@@ -27,26 +27,28 @@
     "Rewards.jsx",
     "refresh.js",
     "test_shared_event.py",
-    "test_refresh.mjs"
+    "test_refresh.mjs",
+    "programme.json",
+    "Programme.jsx"
   ],
   "package_id": "42d8bc63-9465-46f1-8972-b8e58acf4ada",
   "store": {
     "tagline": "Build together. Share discoveries. Celebrate ideas.",
-    "description": "Hackaton 2026 brings a science-festival feel to a collaborative hackathon. Join the event, explore challenge briefs, and share findings, links, images and replies with verified Möbius participants. The Rewards page has mystery top-three podiums for Best Apps, Best Games, Bug Fixes and Best Memes.\n\nEarly event release: challenge briefs and rules are placeholders and will be updated later. Rewards remain To Be Announced; this release does not score entries or reveal winners.\n\nRequires an online Möbius installation and a connected Möbius identity. Install the app in your own Möbius to connect to the shared Hackaton event automatically. Previously saved alternate hosts are preserved and clearly marked; choose Use shared event to switch. Comments and counts refresh automatically while the view is open. Findings and participant lists are available to members of each challenge.",
+    "description": "Hackaton 2026, organized by ANNT, runs from 28 September to 9 October 2026. Explore three flagship bounties and three open briefs, join teams, and share findings with verified M\u00f6bius participants. Rewards include top apps and games, platform contributions, Community MVP, and best meme. Winners remain To Be Announced.\n\nRequires an online M\u00f6bius installation and connected identity. Connects to the shared event by default. Comments and counts refresh automatically while open; saved alternate events remain intact.",
     "screenshots": [
       {
         "src": "static/store/challenges.png",
-        "alt": "Science-festival challenge board with three colorful sample briefs.",
+        "alt": "Science Festival challenge board with ANNT event dates and flagship bounties.",
         "label": "Explore the challenges"
       },
       {
         "src": "static/store/rewards.png",
-        "alt": "Four reward categories with gray mystery pals and unrevealed top-three podiums.",
+        "alt": "Top apps and games mystery podiums, with platform, Community MVP and meme awards.",
         "label": "The reveal is still to come"
       },
       {
         "src": "static/store/phone.png",
-        "alt": "Phone layout of Rewards with the Best Apps mystery podium.",
+        "alt": "Phone welcome card with ANNT introduction, event dates and Join Hackaton button.",
         "label": "Made for phones too"
       }
     ]

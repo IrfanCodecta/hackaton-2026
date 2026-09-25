@@ -4,12 +4,27 @@ A phone-friendly Möbius app for joining a hackathon, exploring challenges,
 and sharing findings with other participants. Cream surfaces, cobalt type,
 and coral, yellow and mint illustrations give it a science-festival theme.
 
-## Early event release
+## Event programme
 
-Challenge briefs and rules are intentionally placeholders. Final event text,
-schedules, submission requirements and judging criteria will be added later.
-The Rewards page shows unrevealed top-three podiums for Best Apps, Best Games,
-Bug Fixes and Best Memes. It does not score entries or reveal winners.
+Organized by ANNT, 28 September–9 October 2026. Six real briefs: Agent
+marketplace, Game studio, Multiplayer & shared worlds, Immersive gallery,
+Private pro desk, and Möbius speaks. The first three are flagship bounties
+(1,400 BAM each); the remaining three are open briefs (700 BAM each).
+
+`programme.json` owns the briefs, dates, organizer information, and rules used
+by both the service and the UI. Organizer description source:
+https://annt.ba/o-nama/ . The welcome links to https://annt.ba/ .
+
+Rewards show mystery top-three podiums for apps and games, plus the platform
+pool, Community MVP, and best meme. No overall prize total or estimated
+participant count is displayed. Actual per-challenge membership counts remain.
+Jury decisions, scoring and payouts are not automated. Joining a challenge is
+participation, not a project submission or a prize award. Jury names, exact
+submission cut-offs and contributor split method remain unannounced.
+
+The organizer approved removing the original sample challenges and their
+associated discussions/memberships on 25 September 2026. New briefs have new
+stable IDs and never inherit sample activity. Event registrations remain.
 
 ## Participate
 
@@ -44,6 +59,7 @@ are included in the listing artwork.
 ## Implementation
 
 - `index.jsx`: onboarding, event connection and navigation.
+- `Programme.jsx` / `programme.json`: shared programme content and welcome/rules views.
 - `Challenge.jsx`: findings, images and threaded replies.
 - `Rewards.jsx`: mystery podiums with anchored shadows and floating pals.
 - `theme.js` / `ChallengeArt.jsx`: responsive styling and illustrations.

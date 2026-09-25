@@ -1,0 +1,147 @@
+{
+  "dates": "28 September – 9 October 2026",
+  "organizer": {
+    "name": "ANNT",
+    "fullName": "Asocijacija za napredak nauke i tehnologije",
+    "about": "ANNT connects young scientists and experts in Bosnia and Herzegovina and abroad to advance science, technology, and education in BiH.",
+    "url": "https://annt.ba/",
+    "source": "https://annt.ba/o-nama/"
+  },
+  "cards": [
+    {
+      "id": "agent-marketplace",
+      "number": "01",
+      "title": "Agent marketplace",
+      "tag": "AGENTS",
+      "color": "#ff8667",
+      "description": "Find the agent form factor. Then ship agents people actually use.",
+      "deliverables": [
+        "Define how people install an agent, talk to it, and help it improve through feedback.",
+        "List the agent offering in the App Store.",
+        "Ship two useful agents, including a reviewer agent."
+      ],
+      "kind": "flagship",
+      "prize": 1400,
+      "format": "One open team per challenge. Prize split among contributors."
+    },
+    {
+      "id": "game-studio",
+      "number": "02",
+      "title": "Game studio",
+      "tag": "CREATE",
+      "color": "#f6cf46",
+      "description": "One clean flow from an idea to a playable game.",
+      "deliverables": [
+        "Generate textures, sprites, and sound, and bring them into the game.",
+        "Invite others to test what you make.",
+        "Prove the flow by shipping a small game made with the studio."
+      ],
+      "kind": "flagship",
+      "prize": 1400,
+      "format": "One open team per challenge. Prize split among contributors."
+    },
+    {
+      "id": "shared-worlds",
+      "number": "03",
+      "title": "Multiplayer & shared worlds",
+      "tag": "TOGETHER",
+      "color": "#91d2bd",
+      "description": "Bring people from different instances into the same world.",
+      "deliverables": [
+        "Build a lobby people from different Möbius instances can join.",
+        "Ship two games that use it.",
+        "Create one shared space to explore together."
+      ],
+      "kind": "flagship",
+      "prize": 1400,
+      "format": "One open team per challenge. Prize split among contributors.",
+      "risk": "Live multiplayer across instances probably needs a relay, so this flagship may be partly platform work."
+    },
+    {
+      "id": "immersive-gallery",
+      "number": "04",
+      "title": "Immersive gallery",
+      "tag": "EXPLORE",
+      "color": "#b9a8e7",
+      "description": "A walkable 3D exhibition that feels intuitive on phone and desktop.",
+      "deliverables": [
+        "Build a walkable 3D exhibition.",
+        "Make navigation intuitive on both phone and desktop.",
+        "Bonus: host the hackathon’s art and memes, and become the closing-ceremony venue."
+      ],
+      "kind": "open",
+      "prize": 700,
+      "format": "Multiple entries allowed. One winner."
+    },
+    {
+      "id": "private-pro-desk",
+      "number": "05",
+      "title": "Private pro desk",
+      "tag": "DISCOVER",
+      "color": "#a4cfed",
+      "description": "A finance or science app with a background agent.",
+      "deliverables": [
+        "Create a useful finance or science app with a background agent.",
+        "For example: a monthly money review from bank exports, or a paper watcher with a lab notebook.",
+        "Keep the data on the user’s own server."
+      ],
+      "kind": "open",
+      "prize": 700,
+      "format": "Multiple entries allowed. One winner."
+    },
+    {
+      "id": "mobius-speaks",
+      "number": "06",
+      "title": "Möbius speaks",
+      "tag": "VOICE",
+      "color": "#f4b0b9",
+      "description": "Give the agent a voice, and let people interrupt it by voice.",
+      "deliverables": [
+        "Narrate what the agent is doing while it works.",
+        "Let the user interrupt by voice.",
+        "Stretch goal: hands-free chat. This brief is platform work."
+      ],
+      "kind": "open",
+      "prize": 700,
+      "format": "Multiple entries allowed. One winner."
+    }
+  ],
+  "rules": [
+    {
+      "title": "The event",
+      "text": "28 September – 9 October 2026. Organized by ANNT. Grow the App Store, build and test together in Social, and improve Möbius — apps and platform. Everything runs through Hackaton 2026."
+    },
+    {
+      "title": "Team formats",
+      "text": "Flagship bounties: one open team per challenge, with the prize split among contributors. Open briefs: multiple entries allowed, one winner per brief."
+    },
+    {
+      "title": "Eligibility & prize limits",
+      "items": [
+        "Maximum one bounty per person.",
+        "Maximum two cash prizes per person.",
+        "One prize per project.",
+        "The platform pool and Community MVP do not count toward the cap.",
+        "Only projects published in the App Store count."
+      ]
+    },
+    {
+      "title": "How the jury decides",
+      "text": "Jury only. No voting.",
+      "items": [
+        "Works well on phone and web.",
+        "Other people actually use it.",
+        "Quality of the work.",
+        "What it improved in Möbius."
+      ]
+    },
+    {
+      "title": "Platform contributions",
+      "text": "The 1,200 BAM platform pool is split by points for fixes and improvements merged into Möbius: small fix — 1 point; real bug or improvement — 3 points; security or data-loss — 5 points."
+    },
+    {
+      "title": "Details still to come",
+      "text": "Jury names, exact submission cut-off times, and the contributor prize-splitting method have not been announced yet."
+    }
+  ]
+}

@@ -25,8 +25,10 @@ def connect(path):
     db.execute('CREATE INDEX IF NOT EXISTS posts_thread ON posts(card,parent_id,id)')
     db.commit()
     return db
-CARDS=[{'id':'01','title':'Build something useful','tag':'PRODUCT','description':'Sample challenge: turn an everyday friction into a small, working tool. Share what you built and what you learned.'},{'id':'02','title':'Make data tell a story','tag':'DATA','description':'Sample challenge: explore a dataset and surface one surprising insight. Share your visual, method, and findings.'},{'id':'03','title':'Reimagine an interaction','tag':'DESIGN','description':'Sample challenge: rethink a familiar digital interaction. Share a prototype, screenshots, and your reasoning.'}]
-RULES=[{'title':'The brief','text':'Placeholder rule text. Replace with the event scope, schedule, and participation requirements.'},{'title':'Working together','text':'Placeholder rule text. Replace with collaboration guidelines, team sizes, and permitted tools.'},{'title':'Sharing your work','text':'Placeholder rule text. Replace with submission requirements, judging criteria, and deadlines.'}]
+from pathlib import Path
+PROGRAMME=json.loads(Path(__file__).with_name('programme.json').read_text())
+CARDS=PROGRAMME['cards']
+RULES=PROGRAMME['rules']
 def run(db,actor,action,b):
     person=db.execute('SELECT * FROM people WHERE actor=?',(actor,)).fetchone()
     if action=='join':
