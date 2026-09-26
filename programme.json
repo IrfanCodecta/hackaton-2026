@@ -3,7 +3,7 @@
   "organizer": {
     "name": "ANNT",
     "fullName": "Asocijacija za napredak nauke i tehnologije",
-    "about": "ANNT connects young scientists and experts in Bosnia and Herzegovina and abroad to advance science, technology, and education in BiH.",
+    "about": "ANNT brings together young scientists and experts in Bosnia and Herzegovina and abroad. Its work supports science, technology, and education in BiH.",
     "url": "https://annt.ba/",
     "source": "https://annt.ba/o-nama/"
   },
@@ -14,15 +14,15 @@
       "title": "Agent marketplace",
       "tag": "AGENTS",
       "color": "#ff8667",
-      "description": "Find the agent form factor. Then ship agents people actually use.",
+      "description": "Work out how people install and use agents, then build two they will want to keep using.",
       "deliverables": [
         "Define how people install an agent, talk to it, and help it improve through feedback.",
-        "List the agent offering in the App Store.",
+        "Publish the agent offering in the App Store.",
         "Ship two useful agents, including a reviewer agent."
       ],
       "kind": "flagship",
       "prize": 1400,
-      "format": "One open team per challenge. Prize split among contributors."
+      "format": "One open team per challenge. Contributors share the prize."
     },
     {
       "id": "game-studio",
@@ -30,15 +30,15 @@
       "title": "Game studio",
       "tag": "CREATE",
       "color": "#f6cf46",
-      "description": "One clean flow from an idea to a playable game.",
+      "description": "Build a studio that takes a game idea through to a playable game.",
       "deliverables": [
         "Generate textures, sprites, and sound, and bring them into the game.",
         "Invite others to test what you make.",
-        "Prove the flow by shipping a small game made with the studio."
+        "Ship a small game made with the studio to show that the whole flow works."
       ],
       "kind": "flagship",
       "prize": 1400,
-      "format": "One open team per challenge. Prize split among contributors."
+      "format": "One open team per challenge. Contributors share the prize."
     },
     {
       "id": "shared-worlds",
@@ -46,7 +46,7 @@
       "title": "Multiplayer & shared worlds",
       "tag": "TOGETHER",
       "color": "#91d2bd",
-      "description": "Bring people from different instances into the same world.",
+      "description": "Let people on different Möbius instances play and explore together.",
       "deliverables": [
         "Build a lobby people from different Möbius instances can join.",
         "Ship two games that use it.",
@@ -54,7 +54,7 @@
       ],
       "kind": "flagship",
       "prize": 1400,
-      "format": "One open team per challenge. Prize split among contributors.",
+      "format": "One open team per challenge. Contributors share the prize.",
       "risk": "Live multiplayer across instances probably needs a relay, so this flagship may be partly platform work."
     },
     {
@@ -63,15 +63,15 @@
       "title": "Immersive gallery",
       "tag": "EXPLORE",
       "color": "#b9a8e7",
-      "description": "A walkable 3D exhibition that feels intuitive on phone and desktop.",
+      "description": "Build a 3D exhibition people can walk through on a phone or computer.",
       "deliverables": [
         "Build a walkable 3D exhibition.",
         "Make navigation intuitive on both phone and desktop.",
-        "Bonus: host the hackathon’s art and memes, and become the closing-ceremony venue."
+        "Bonus: display the hackathon’s art and memes, and host the closing ceremony in the gallery."
       ],
       "kind": "open",
       "prize": 700,
-      "format": "Multiple entries allowed. One winner."
+      "format": "Multiple entries can compete for one prize."
     },
     {
       "id": "private-pro-desk",
@@ -79,15 +79,15 @@
       "title": "Private pro desk",
       "tag": "DISCOVER",
       "color": "#a4cfed",
-      "description": "A finance or science app with a background agent.",
+      "description": "Build a finance or science app with an agent that works in the background.",
       "deliverables": [
         "Create a useful finance or science app with a background agent.",
-        "For example: a monthly money review from bank exports, or a paper watcher with a lab notebook.",
+        "For example, review bank exports each month, or track new papers alongside a lab notebook.",
         "Keep the data on the user’s own server."
       ],
       "kind": "open",
       "prize": 700,
-      "format": "Multiple entries allowed. One winner."
+      "format": "Multiple entries can compete for one prize."
     },
     {
       "id": "mobius-speaks",
@@ -95,25 +95,25 @@
       "title": "Möbius speaks",
       "tag": "VOICE",
       "color": "#f4b0b9",
-      "description": "Give the agent a voice, and let people interrupt it by voice.",
+      "description": "Let people hear what the agent is doing and interrupt it by speaking.",
       "deliverables": [
-        "Narrate what the agent is doing while it works.",
+        "Have the agent explain aloud what it is doing as it works.",
         "Let the user interrupt by voice.",
         "Stretch goal: hands-free chat. This brief is platform work."
       ],
       "kind": "open",
       "prize": 700,
-      "format": "Multiple entries allowed. One winner."
+      "format": "Multiple entries can compete for one prize."
     }
   ],
   "rules": [
     {
       "title": "The event",
-      "text": "28 September – 9 October 2026. Organized by ANNT. Grow the App Store, build and test together in Social, and improve Möbius — apps and platform. Everything runs through Hackaton 2026."
+      "text": "ANNT is organizing Hackaton 2026 from 28 September to 9 October 2026. The goal is to add apps to the Store, build and test together in Social, and improve Möbius apps and the platform. Everything runs through this app."
     },
     {
       "title": "Team formats",
-      "text": "Flagship bounties: one open team per challenge, with the prize split among contributors. Open briefs: multiple entries allowed, one winner per brief."
+      "text": "Each flagship bounty has one open team whose contributors share the prize. Open briefs allow multiple entries, with one winner per brief."
     },
     {
       "title": "Eligibility & prize limits",
@@ -127,7 +127,7 @@
     },
     {
       "title": "How the jury decides",
-      "text": "Jury only. No voting.",
+      "text": "The jury chooses the winners. There is no public vote.",
       "items": [
         "Works well on phone and web.",
         "Other people actually use it.",
@@ -141,7 +141,7 @@
     },
     {
       "title": "Details still to come",
-      "text": "Jury names, exact submission cut-off times, and the contributor prize-splitting method have not been announced yet."
+      "text": "The jury members, exact submission deadlines, and method for splitting prizes among contributors will be announced later."
     }
   ]
 }
