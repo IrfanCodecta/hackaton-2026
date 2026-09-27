@@ -14,11 +14,11 @@
       "title": "Agent marketplace",
       "tag": "AGENTS",
       "color": "#ff8667",
-      "description": "Work out how people install and use agents, then build two they will want to keep using.",
+      "description": "Define an agent format, list it in the Store, and ship two working agents others can use.",
       "deliverables": [
-        "Define how people install an agent, talk to it, and help it improve through feedback.",
-        "Publish the agent offering in the App Store.",
-        "Ship two useful agents, including a reviewer agent."
+        "Define what an agent is, how people install it and talk to it, and how it gets better from feedback.",
+        "Create a Store listing for the agent format and ship two working agents others can use.",
+        "One must be a reviewer agent that reviews Store apps and bug reports. Think autonomous Reviewer or Researcher agents."
       ],
       "kind": "flagship",
       "prize": 1400,
@@ -30,11 +30,12 @@
       "title": "Game studio",
       "tag": "CREATE",
       "color": "#f6cf46",
-      "description": "Build a studio that takes a game idea through to a playable game.",
+      "description": "One flow from idea to playable game: create assets, bring them into the game, and test with a friend.",
       "deliverables": [
-        "Generate textures, sprites, and sound, and bring them into the game.",
-        "Invite others to test what you make.",
-        "Ship a small game made with the studio to show that the whole flow works."
+        "Generate textures, sprites and sound, then bring them into the game.",
+        "Invite a friend to test and get feedback.",
+        "Ship one small game built with the studio as proof.",
+        "Stretch goal: voice."
       ],
       "kind": "flagship",
       "prize": 1400,
@@ -46,16 +47,15 @@
       "title": "Multiplayer & shared worlds",
       "tag": "TOGETHER",
       "color": "#91d2bd",
-      "description": "Let people on different Möbius instances play and explore together.",
+      "description": "A lobby where people from different Möbius instances meet, start a session, play and hang out.",
       "deliverables": [
-        "Build a lobby people from different Möbius instances can join.",
+        "Build a cross-instance lobby where people meet and start a session.",
         "Ship two games that use it.",
-        "Create one shared space to explore together."
+        "Include one ‘just hang out’ space you can walk around."
       ],
       "kind": "flagship",
       "prize": 1400,
-      "format": "One open team per challenge. Contributors share the prize.",
-      "risk": "Live multiplayer across instances probably needs a relay, so this flagship may be partly platform work."
+      "format": "One open team per challenge. Contributors share the prize."
     },
     {
       "id": "immersive-gallery",
@@ -63,11 +63,10 @@
       "title": "Immersive gallery",
       "tag": "EXPLORE",
       "color": "#b9a8e7",
-      "description": "Build a 3D exhibition people can walk through on a phone or computer.",
+      "description": "A 3D exhibition you can walk through with intuitive controls on both phone and desktop.",
       "deliverables": [
-        "Build a walkable 3D exhibition.",
-        "Make navigation intuitive on both phone and desktop.",
-        "Bonus: display the hackathon’s art and memes, and host the closing ceremony in the gallery."
+        "Make the exhibition intuitive to explore on phone and desktop.",
+        "Bonus: host the hackathon’s own art and memes and become the venue for the closing ceremony."
       ],
       "kind": "open",
       "prize": 700,
@@ -79,11 +78,10 @@
       "title": "Private pro desk",
       "tag": "DISCOVER",
       "color": "#a4cfed",
-      "description": "Build a finance or science app with an agent that works in the background.",
+      "description": "Build a Project and integrations for research or financial work — similar to Claude for Science or Codex for Finance.",
       "deliverables": [
-        "Create a useful finance or science app with a background agent.",
-        "For example, review bank exports each month, or track new papers alongside a lab notebook.",
-        "Keep the data on the user’s own server."
+        "Build a Project and integrations that support research or financial work.",
+        "Think of experiences similar to Claude for Science or Codex for Finance."
       ],
       "kind": "open",
       "prize": 700,
@@ -95,11 +93,9 @@
       "title": "Möbius speaks",
       "tag": "VOICE",
       "color": "#f4b0b9",
-      "description": "Let people hear what the agent is doing and interrupt it by speaking.",
+      "description": "Best use of the Voice function in Möbius.",
       "deliverables": [
-        "Have the agent explain aloud what it is doing as it works.",
-        "Let the user interrupt by voice.",
-        "Stretch goal: hands-free chat. This brief is platform work."
+        "Show your best use of Möbius’s Voice function."
       ],
       "kind": "open",
       "prize": 700,
@@ -118,8 +114,80 @@
         "Fixed it? Link your change and say what it improves."
       ],
       "kind": "community",
-      "award": "1,200 BAM platform pool",
+      "award": "1,000 BAM platform pool",
       "format": "For fixes and improvements merged into Möbius. At the end, the organizers review all contributions together and decide how the pool is shared."
+    },
+    {
+      "id": "top-apps",
+      "number": "08",
+      "title": "Top apps",
+      "tag": "APPS",
+      "color": "#ff8667",
+      "description": "Awards for the three best apps.",
+      "award": "500 / 300 / 200 BAM",
+      "amounts": [
+        500,
+        300,
+        200
+      ],
+      "kind": "award",
+      "format": "Winners will be announced at the end of the competition."
+    },
+    {
+      "id": "top-games",
+      "number": "09",
+      "title": "Top games",
+      "tag": "GAMES",
+      "color": "#f6cf46",
+      "description": "Awards for the three best games.",
+      "award": "500 / 300 / 200 BAM",
+      "amounts": [
+        500,
+        300,
+        200
+      ],
+      "kind": "award",
+      "format": "Winners will be announced at the end of the competition."
+    },
+    {
+      "id": "community-mvp",
+      "number": "10",
+      "title": "Community MVP",
+      "tag": "COMMUNITY",
+      "color": "#91d2bd",
+      "description": "For the person who helped others most by testing projects, giving feedback, and helping people get started.",
+      "award": "300 BAM",
+      "amounts": [
+        300
+      ],
+      "kind": "award",
+      "format": "Winners will be announced at the end of the competition."
+    },
+    {
+      "id": "discretionary",
+      "number": "11",
+      "title": "Discretionary",
+      "tag": "AWARD",
+      "color": "#b9a8e7",
+      "description": "An award allocation at the organizers’ discretion.",
+      "award": "400 BAM",
+      "amounts": [
+        400
+      ],
+      "kind": "award",
+      "format": "Winners will be announced at the end of the competition."
+    },
+    {
+      "id": "best-meme",
+      "number": "12",
+      "title": "Best meme",
+      "tag": "MEMES",
+      "color": "#f4b0b9",
+      "description": "The best meme earns street cred. No cash, just bragging rights.",
+      "award": "Street cred",
+      "amounts": [],
+      "kind": "award",
+      "format": "Winners will be announced at the end of the competition."
     }
   ],
   "rules": [
@@ -153,11 +221,31 @@
     },
     {
       "title": "Platform contributions",
-      "text": "The 1,200 BAM platform pool is for fixes and improvements merged into Möbius. There is no points system: at the end, the organizers will review all contributions together and decide how the pool is shared."
+      "text": "The 1,000 BAM platform pool is for fixes and improvements merged into Möbius. There is no points system: at the end, the organizers will review all contributions together and decide how the pool is shared."
     },
     {
       "title": "Details still to come",
       "text": "The jury members, exact submission deadlines, and method for splitting prizes among contributors will be announced later."
+    }
+  ],
+  "extraAwards": [
+    {
+      "id": "bug-reports",
+      "title": "Platform improvements pool",
+      "award": "1,000 BAM",
+      "amounts": [
+        1000
+      ],
+      "description": "For fixes and improvements merged into Möbius. At the end, the organizers review all contributions together and decide how the pool is shared."
+    },
+    {
+      "id": "community-mvp"
+    },
+    {
+      "id": "discretionary"
+    },
+    {
+      "id": "best-meme"
     }
   ]
 }

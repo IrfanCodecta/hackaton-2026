@@ -15,8 +15,8 @@ Private pro desk, and Möbius speaks. The first three are flagship bounties
 by both the service and the UI. Organizer description source:
 https://annt.ba/o-nama/ . The welcome links to https://annt.ba/ .
 
-Rewards show mystery top-three podiums for apps and games, plus the platform
-pool, Community MVP, and best meme. No overall prize total or estimated
+Rewards show mystery top-three podiums for apps and games, plus the
+1,000 BAM platform pool, 300 BAM Community MVP, 400 BAM discretionary allocation, and best meme (street cred). Award discussion cards cover Top apps, Top games, Community MVP, Discretionary and Best meme. No overall prize total or estimated
 participant count is displayed. Actual per-challenge membership counts remain.
 Jury decisions, scoring and payouts are not automated. Joining a challenge is
 participation, not a project submission or a prize award. Jury names, exact

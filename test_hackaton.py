@@ -6,6 +6,22 @@ import service
 from domain import Problem,connect,run
 from PIL import Image
 class HackatonTests(unittest.TestCase):
+ def test_final_programme_and_award_boards(self):
+  from domain import PROGRAMME, CARDS
+  by_id={c['id']:c for c in CARDS}
+  self.assertEqual(len(by_id),12)
+  self.assertEqual(sum(c.get('prize',0) for c in CARDS)+sum(sum(c.get('amounts',[])) for c in CARDS)+1000,10000)
+  self.assertEqual(by_id['bug-reports']['award'],'1,000 BAM platform pool')
+  self.assertEqual(by_id['community-mvp']['amounts'],[300])
+  self.assertEqual(by_id['discretionary']['amounts'],[400])
+  self.assertEqual(by_id['best-meme']['amounts'],[])
+  self.assertNotIn('1,200',json.dumps(PROGRAMME))
+  self.execute('@award-tester','join');self.execute('@award-tester','accept')
+  for id in ['top-apps','top-games','community-mvp','discretionary','best-meme']:
+   self.assertFalse(next(c for c in self.execute('@award-tester','state')['cards'] if c['id']==id)['joined'])
+   self.execute('@award-tester','join_card',{'card':id})
+   self.execute('@award-tester','comment',{'card':id,'text':'Award discussion'})
+   self.assertEqual(len(self.execute('@award-tester','detail',{'card':id})['posts']),1)
  def setUp(self):
   service.DB_PATH=Path(ROOT.name)/(secrets.token_hex(8)+'.sqlite3')
  def execute(self,actor,action,b=None,rid=None):return service.execute(action,b or {},actor,False,rid or secrets.token_hex(16))
@@ -16,19 +32,19 @@ class HackatonTests(unittest.TestCase):
   with self.assertRaises(Problem):self.execute('@a','detail',{'card':'agent-marketplace'})
   self.execute('@a','join');self.assertEqual(self.execute('@a','state')['cards'],[])
   with self.assertRaises(Problem):self.execute('@a','join_card',{'card':'agent-marketplace'})
-  self.execute('@a','accept');self.assertEqual(len(self.execute('@a','state')['cards']),7)
+  self.execute('@a','accept');self.assertEqual(len(self.execute('@a','state')['cards']),12)
   self.execute('@a','join_card',{'card':'agent-marketplace'});self.assertTrue(self.execute('@a','state')['cards'][0]['joined'])
  def test_real_programme_has_no_sample_aliases(self):
   self.execute('@a','join');self.execute('@a','accept')
   cards=self.execute('@a','state')['cards']
-  self.assertEqual([c['kind'] for c in cards],['flagship']*3+['open']*3+['community'])
-  self.assertEqual([c.get('prize') for c in cards],[1400]*3+[700]*3+[None])
-  self.assertEqual(len({c['id'] for c in cards}),7)
+  self.assertEqual([c['kind'] for c in cards],['flagship']*3+['open']*3+['community']+['award']*5)
+  self.assertEqual([c.get('prize') for c in cards],[1400]*3+[700]*3+[None]*6)
+  self.assertEqual(len({c['id'] for c in cards}),12)
   for old in ['01','02','03']:
    with self.assertRaises(Problem) as caught:self.execute('@a','join_card',{'card':old})
    self.assertEqual(caught.exception.status,404)
   for c in cards:
-   self.assertTrue(c['deliverables']);self.assertFalse(c['joined']);self.assertEqual(c['count'],0)
+   self.assertTrue(c['description']);self.assertTrue(c.get('deliverables') or c['kind']=='award');self.assertFalse(c['joined']);self.assertEqual(c['count'],0)
   self.assertTrue(self.execute('@a','state')['joined'])
  def test_shared_participants_images_links_and_isolation(self):
   self.joined('@alice');self.joined('@bob')
