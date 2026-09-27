@@ -23,4 +23,4 @@ export const CSS = `
 @media(hover:hover) and (pointer:fine){.hk-card-link:hover .hk-art-tilt{transform:rotate(6deg)}}
 .hk-card-link:focus-visible .hk-art-tilt,.hk-card-link:active .hk-art-tilt{transform:rotate(6deg)}
 @media(prefers-reduced-motion:reduce){.hk .hk-art-tilt{transform:none!important;transition:none!important}}
-`;
+.hk-card-link{cursor:pointer;transition:transform .15s var(--ease),box-shadow .15s var(--ease)}.hk-card-link:active{transform:scale(.985)}.hk-card-link:focus-visible{outline:3px solid #253cc2;outline-offset:3px}.hk .hk-board-compact{padding:22px 0 14px}.hk .hk-board-compact h1{font-size:clamp(32px,4vw,44px);margin:6px 0}.hk .hk-board-compact p{margin:0}.hk-welcome-rules{margin:18px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}.hk-welcome-rules>summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:700;color:var(--accent)}.hk-welcome-rules .hk-rules-grid{padding:4px 0 16px}@media(prefers-reduced-motion:reduce){.hk-card-link,.hk-card-link:active{transition:none;transform:none}}`;

@@ -1,7 +1,7 @@
 # Hackaton 2026
 
 A phone-friendly Möbius app for joining a hackathon, exploring challenges,
-and sharing findings with other participants. Cream surfaces, cobalt type,
+and sharing updates with other participants. Cream surfaces, cobalt type,
 and coral, yellow and mint illustrations give it a science-festival theme.
 
 ## Event programme
@@ -34,8 +34,8 @@ stable IDs and never inherit sample activity. Event registrations remain.
    alternate host stays selected and is visibly marked as a separate event;
    choose **Use shared event** to switch. Old comments and memberships stay
    on the original installation and are not moved or deleted.
-3. Join the event, read the rules, then open and join a challenge.
-4. Share findings, links, PNG/JPEG/WebP images (up to 1 MB), and threaded replies.
+3. Join the event (one step that also accepts the rules), then open a challenge and join it.
+4. Share updates, links, PNG/JPEG/WebP images (up to 1 MB), and threaded replies.
    You can edit or delete your own findings and replies. Other people's replies
    remain when their parent is deleted.
 

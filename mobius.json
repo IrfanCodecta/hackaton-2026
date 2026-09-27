@@ -1,7 +1,7 @@
 {
   "id": "hackaton-2026",
   "name": "Hackaton 2026",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Choose a Hackaton challenge and share your progress with other M\u00f6bius participants.",
   "entry": "index.jsx",
   "icon": "icon.png",
@@ -34,7 +34,7 @@
   "package_id": "42d8bc63-9465-46f1-8972-b8e58acf4ada",
   "store": {
     "tagline": "Find your Hackaton team and share what you build.",
-    "description": "Join ANNT\u2019s Hackaton, running from 28 September to 9 October 2026. Choose from three flagship bounties and three open briefs. You can join a team, post findings, and reply to other participants. The rewards page covers prizes for apps, games, platform contributions, and Community MVP, plus bragging rights for the best meme. Winners will be announced after the competition.\n\nYou need an online M\u00f6bius installation and a connected identity. The app opens the shared event by default and refreshes comments and participant counts while you use it. If you previously chose a different event host, that choice and its data are kept.",
+    "description": "Join ANNT\u2019s Hackaton, running from 28 September to 9 October 2026. Choose from three flagship bounties and three open briefs. You can join a team, post updates, and reply to other participants. The rewards page covers prizes for apps, games, platform contributions, and Community MVP, plus bragging rights for the best meme. Winners will be announced after the competition.\n\nYou need an online M\u00f6bius installation and a connected identity. The app opens the shared event by default and refreshes comments and participant counts while you use it. If you previously chose a different event host, that choice and its data are kept.",
     "screenshots": [
       {
         "src": "static/store/challenges.png",
