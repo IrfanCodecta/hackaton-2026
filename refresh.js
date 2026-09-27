@@ -17,7 +17,7 @@ export async function readThread(command, action, body, through, signal) {
 
 // Poll only a visible, online view. Focus/reconnection refresh immediately;
 // slow reads never overlap, and leaving the view aborts its outstanding read.
-export function watchVisible(refresh, onError, delay = 15000) {
+export function watchVisible(refresh, onError, delay = 30000) {
   let stopped = false, timer, running = false, controller;
   const available = () => !document.hidden && navigator.onLine !== false;
   async function run() {

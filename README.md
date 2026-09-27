@@ -84,7 +84,7 @@ Tests use temporary databases and fake identities, not a live event. They cover
 onboarding, membership gates, attachments, replay safety, author-only edits and
 deletes, reply preservation, pagination and federation proof rejection.
 
-Views refresh every 15 seconds while visible and online, and on focus or
+Views refresh every 30 seconds while visible and online, and on focus or
 reconnection. Expanded replies refresh too; drafts and loaded older pages
 remain open. A failed refresh keeps the last view and displays a stale-data
 warning. This is periodic refresh, not instantaneous live delivery.

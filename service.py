@@ -43,10 +43,19 @@ async def profile():
     require(not d.get('account_unavailable') and p.get('handle'),'Connect a Möbius account with an @handle in Möbius · You first.',409)
     return {'handle':handle(p['handle']),'user_id':p.get('user_id')}
 
+DIRECTORY_TTL=300
 async def directory(who):
-    d=await platform('GET','/api/identity/handles/'+quote(handle(who)[1:],safe=''))
+    # Cache verified handle→host listings briefly so each request does not repeat
+    # the identity-directory round trip. Only successful lookups are cached.
+    who=handle(who)
+    with connect(DB_PATH) as db:
+        row=db.execute('SELECT hosts FROM directory_cache WHERE actor=? AND expires>?',(who,time.time())).fetchone()
+    if row:return json.loads(row[0])
+    d=await platform('GET','/api/identity/handles/'+quote(who[1:],safe=''))
     require(d.get('linked') is True,'Connect your Möbius account to verify invited identities.',409)
     require(bool(d.get('hosts')),'This Mobius ID has no reachable installation.',409)
+    with connect(DB_PATH) as db:
+        db.execute('INSERT OR REPLACE INTO directory_cache VALUES(?,?,?)',(who,json.dumps(d['hosts']),time.time()+DIRECTORY_TTL))
     return d['hosts']
 
 async def peer(h,path,body=None):

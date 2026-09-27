@@ -11,12 +11,15 @@ def handle(value):
     return '@'+value.lstrip('@').lower()
 def connect(path):
     db=sqlite3.connect(path,timeout=10);db.row_factory=sqlite3.Row
+    # WAL lets concurrent service requests read while one writes.
+    db.execute('PRAGMA journal_mode=WAL')
     db.executescript('''
     CREATE TABLE IF NOT EXISTS people(actor TEXT PRIMARY KEY, accepted INTEGER DEFAULT 0);
     CREATE TABLE IF NOT EXISTS members(card TEXT,actor TEXT,PRIMARY KEY(card,actor));
     CREATE TABLE IF NOT EXISTS posts(id INTEGER PRIMARY KEY,card TEXT,actor TEXT,text TEXT,image TEXT,created REAL);
     CREATE TABLE IF NOT EXISTS receipts(id TEXT PRIMARY KEY,digest TEXT,result TEXT);
     CREATE TABLE IF NOT EXISTS proofs(id TEXT PRIMARY KEY,document TEXT,expires REAL);
+    CREATE TABLE IF NOT EXISTS directory_cache(actor TEXT PRIMARY KEY,hosts TEXT,expires REAL);
     ''')
     db.execute('BEGIN IMMEDIATE')
     columns={r[1] for r in db.execute('PRAGMA table_info(posts)')}
