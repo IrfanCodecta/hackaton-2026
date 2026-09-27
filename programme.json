@@ -104,6 +104,22 @@
       "kind": "open",
       "prize": 700,
       "format": "Multiple entries can compete for one prize."
+    },
+    {
+      "id": "bug-reports",
+      "number": "07",
+      "title": "Bug reports",
+      "tag": "FIX",
+      "color": "#d9f27a",
+      "description": "Found a bug in Möbius or fixed one? Share it here so others can confirm it, avoid it, or build on your fix.",
+      "deliverables": [
+        "Describe what went wrong and how to make it happen again.",
+        "Add a screenshot if it helps.",
+        "Fixed it? Link your change and say what it improves."
+      ],
+      "kind": "community",
+      "award": "1,200 BAM platform pool",
+      "format": "For fixes and improvements merged into Möbius. At the end, the organizers review all contributions together and decide how the pool is shared."
     }
   ],
   "rules": [
