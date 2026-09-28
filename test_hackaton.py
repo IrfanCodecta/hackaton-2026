@@ -54,6 +54,26 @@ class HackatonTests(unittest.TestCase):
   self.assertEqual(self.execute('@bob','image',{'card':'agent-marketplace','id':p['id']})['image'],image)
   with self.assertRaises(Problem):self.execute('@bob','image',{'card':'game-studio','id':p['id']})
   with self.assertRaises(Problem):self.execute('@outsider','detail',{'card':'agent-marketplace'})
+ def test_event_contestants_read_without_joining_card(self):
+  self.joined('@author')
+  im=Image.new('RGB',(2,2));out=io.BytesIO();im.save(out,format='PNG');image='data:image/png;base64,'+base64.b64encode(out.getvalue()).decode()
+  post=self.execute('@author','comment',{'card':'agent-marketplace','text':'Visible update','image':image})['id']
+  reply=self.execute('@author','comment',{'card':'agent-marketplace','parent_id':post,'text':'Visible reply'})['id']
+  self.execute('@reader','join');self.execute('@reader','accept');self.execute('@unaccepted','join')
+  for action,body in [('detail',{}),('replies',{'parent_id':post}),('image',{'id':post})]:
+   for actor in ['@outsider','@unaccepted']:
+    with self.assertRaises(Problem) as caught:self.execute(actor,action,{'card':'agent-marketplace',**body})
+    self.assertEqual(caught.exception.status,403)
+  detail=self.execute('@reader','detail',{'card':'agent-marketplace'})
+  self.assertEqual(detail['members'],['@author']);self.assertEqual(detail['posts'][0]['text'],'Visible update')
+  self.assertEqual(self.execute('@reader','replies',{'card':'agent-marketplace','parent_id':post})['posts'][0]['id'],reply)
+  self.assertEqual(self.execute('@reader','image',{'card':'agent-marketplace','id':post})['image'],image)
+  for body in [{'text':'Not joined'},{'text':'Not joined reply','parent_id':post}]:
+   with self.assertRaises(Problem) as caught:self.execute('@reader','comment',{'card':'agent-marketplace',**body})
+   self.assertEqual(caught.exception.status,403)
+  self.assertFalse(self.execute('@reader','state')['cards'][0]['joined'])
+  self.execute('@reader','join_card',{'card':'agent-marketplace'})
+  self.execute('@reader','comment',{'card':'agent-marketplace','text':'Joined reply','parent_id':post})
  def test_idempotency_and_bad_image(self):
   self.joined('@a');rid=secrets.token_hex(16);body={'card':'agent-marketplace','text':'one'}
   self.assertEqual(self.execute('@a','comment',body,rid),self.execute('@a','comment',body,rid));self.assertEqual(len(self.execute('@a','detail',{'card':'agent-marketplace'})['posts']),1)

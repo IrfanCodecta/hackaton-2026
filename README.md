@@ -46,7 +46,7 @@ Möbius installation registered to their identity for cross-host participation.
 
 The app uses Möbius identity permission to verify participants. The organizer's
 installation holds event memberships and discussions in app-scoped SQLite.
-Participant lists, findings and images require challenge membership. Public
+Participant lists, updates, replies and images are readable by contestants who have joined the event and accepted its rules. Challenge membership is required to post or reply. Reading never joins a challenge. Public
 service routes exchange short-lived, request-bound identity proofs; owner
 credentials are never sent to peers. Outbound peer requests use DNS-pinned
 public HTTPS, no redirects, and bounded responses.

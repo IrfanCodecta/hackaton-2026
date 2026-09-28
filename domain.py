@@ -43,7 +43,6 @@ def run(db,actor,action,b):
     require(person['accepted'],'Read the event rules first.',403)
     card=b.get('card');require(card in [c['id'] for c in CARDS],'Challenge not found.',404)
     if action=='join_card':db.execute('INSERT OR IGNORE INTO members VALUES(?,?)',(card,actor));return {'ok':True}
-    require(db.execute('SELECT 1 FROM members WHERE card=? AND actor=?',(card,actor)).fetchone(),'Join this challenge to see participants and findings.',403)
     if action in ('detail','replies'):
         visible="(p.deleted=0 OR EXISTS(SELECT 1 FROM posts child WHERE child.parent_id=p.id))"
         fields="p.id,p.actor,p.text,p.created,p.parent_id,p.deleted,p.image IS NOT NULL AS has_image,(SELECT COUNT(*) FROM posts child WHERE child.parent_id=p.id AND (child.deleted=0 OR EXISTS(SELECT 1 FROM posts grandchild WHERE grandchild.parent_id=child.id))) AS reply_count"
@@ -60,6 +59,7 @@ def run(db,actor,action,b):
         return result
     if action=='image':
         row=db.execute('SELECT image FROM posts WHERE card=? AND id=? AND deleted=0',(card,b.get('id'))).fetchone();require(row,'Image not found.',404);return {'image':row[0]}
+    require(db.execute('SELECT 1 FROM members WHERE card=? AND actor=?',(card,actor)).fetchone(),'Join this challenge to post or reply.',403)
     if action in ('edit_comment','delete_comment'):
         row=db.execute('SELECT * FROM posts WHERE card=? AND id=?',(card,b.get('id'))).fetchone()
         require(row and not row['deleted'],'Finding or reply not found. It may have been deleted.',404)

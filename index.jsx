@@ -27,7 +27,7 @@ export default function App({appId,token}){
  const refresh=useCallback(async(signal)=>{const request=++stateRequest.current;const next=await command('state',{},undefined,signal);if(activeHost.current===host&&request===stateRequest.current&&!signal?.aborted){setState(next);setSyncError('');if(!ready.current){ready.current=true;window.mobius.signal('app_ready',{item_count:next.cards.length})}}},[command,host]);
  const fail=e=>{setError(e.message);window.mobius.signal('error',{message:e.message,source:'hackaton'})};
  useEffect(()=>{let live=true;(async()=>{try{const c=await call('context');const saved=await window.mobius.storage.get('event-host.json');if(live){setCtx(c);setHost(eventHost(saved,c));setHostDraft(eventHost(saved,c))}}catch(e){if(live)fail(e)}})();return()=>{live=false}},[call]);
- const watchBoard=!!host&&page==='challenges'&&(!selected||!state?.cards?.find(c=>c.id===selected)?.joined);
+ const watchBoard=!!host&&page==='challenges'&&!selected;
  useEffect(()=>{if(watchBoard)return watchVisible(refresh,e=>setSyncError(e.message))},[watchBoard,refresh]);
  async function connectHost(value){setBusy(true);setError('');try{await window.mobius.storage.set('event-host.json',{host:value});if(value===host){await refresh()}else{stateRequest.current++;activeHost.current=value;setState(null);setSyncError('');setHost(value);setHostDraft(value);setRules(false);closeChallenge()}}catch(e){fail(e)}finally{setBusy(false)}}
  async function joinEvent(){setBusy(true);setError('');try{setPage('challenges');setRules(false);if(!state.joined)await command('join');await command('accept');await refresh()}catch(e){fail(e)}finally{setBusy(false)}}
